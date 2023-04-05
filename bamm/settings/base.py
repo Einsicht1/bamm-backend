@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'products',
     'artists',
     'orders',
-    'users'
+    'users',
 
     # third party
     'rest_framework',
