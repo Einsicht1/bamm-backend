@@ -1,0 +1,31 @@
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Local development settings
+.env
+venv/
+.vscode/
+*.sqlite3
+
+# Logs and databases
+*.log
+*.sql
+
+# Static files
+staticfiles/
+assets/
+
+# Project specific files
+.idea/
+*.egg-info/
+*.egg
+media/

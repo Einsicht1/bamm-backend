@@ -1,0 +1,34 @@
+[tool.poetry]
+name = "bamm"
+version = "0.1.0"
+description = ""
+authors = ["Einsicht1 <kpl5672@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+asgiref = "3.6.0"
+boto3 = "1.26.102"
+botocore = "1.29.102"
+certifi = "2022.12.7"
+django = "4.1.7"
+django-filter = "23.1"
+django-storages = "1.13.2"
+djangorestframework = "3.14.0"
+jmespath = "1.0.1"
+markdown = "3.4.3"
+pillow = "9.4.0"
+python-dateutil = "2.8.2"
+pytz = "2023.3"
+s3transfer = "0.6.0"
+six = "1.16.0"
+sqlparse = "0.4.3"
+urllib3 = "1.26.15"
+mysqlclient = "^2.1.1"
+gunicorn = "^20.1.0"
+django-cors-headers = "^3.14.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
