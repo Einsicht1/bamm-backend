@@ -18,10 +18,16 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from core.views import HealthCheckView
+from products.views import ProductListAPIView, ProductDetailAPIView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('health/', HealthCheckView.as_view()),
     path('api-auth/', include('rest_framework.urls')),
-    path("products/", include("products.urls")),
+    path("api/v1/products", ProductListAPIView.as_view()),
+    path("api/v1/products/<int:pk>", ProductDetailAPIView.as_view()),
+
 ]
 
 # if settings.DEBUG:
