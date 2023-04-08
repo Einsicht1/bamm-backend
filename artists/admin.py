@@ -5,8 +5,9 @@ from artists.models import Artist
 
 
 class ArtistAdmin(ModelAdmin):
-    exclude = ["deleted_at",]
-
+    exclude = [
+        "deleted_at",
+    ]
 
 
 admin.site.register(Artist, ArtistAdmin)

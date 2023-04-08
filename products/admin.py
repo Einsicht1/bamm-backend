@@ -7,13 +7,16 @@ from products.models import Product, ProductImage
 class InlineProductImage(admin.StackedInline):
     model = ProductImage
     max_num = 5
-    exclude = ["deleted_at",]
-
+    exclude = [
+        "deleted_at",
+    ]
 
 
 class ProductAdmin(ModelAdmin):
     inlines = [InlineProductImage]
-    exclude = ["deleted_at",]
+    exclude = [
+        "deleted_at",
+    ]
 
 
 admin.site.register(Product, ProductAdmin)

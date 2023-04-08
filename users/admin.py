@@ -5,8 +5,9 @@ from users.models import User
 
 
 class UserAdmin(ModelAdmin):
-    exclude = ["deleted_at",]
-
+    exclude = [
+        "deleted_at",
+    ]
 
 
 admin.site.register(User, UserAdmin)

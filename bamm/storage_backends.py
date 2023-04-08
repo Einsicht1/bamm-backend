@@ -2,10 +2,10 @@ from storages.backends.s3boto3 import S3Boto3Storage
 
 
 class MediaStorage(S3Boto3Storage):
-    bucket_name = 'bamm-product'
-    location = 'media'
+    bucket_name = "bamm-product"
+    location = "media"
 
 
 class StaticStorage(S3Boto3Storage):
-    bucket_name = 'bamm-product'
-    location = 'static'
+    bucket_name = "bamm-product"
+    location = "static"

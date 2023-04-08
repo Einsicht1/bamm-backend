@@ -9,7 +9,6 @@ class ProductListAPIView(ListAPIView):
     queryset = Product.objects.all()
 
 
-
 class ProductDetailAPIView(RetrieveAPIView):
     serializer_class = ProductSerializer
     queryset = Product.objects.all()

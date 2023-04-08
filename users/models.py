@@ -1,10 +1,7 @@
-from django.contrib.auth.models import AbstractBaseUser, UserManager, AbstractUser
+from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
 
 from core.models import BaseModel
-
-
-# models.py
 
 
 class CustomUserManager(UserManager):

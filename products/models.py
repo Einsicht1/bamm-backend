@@ -9,8 +9,12 @@ class Product(BaseModel):
     quantity = models.IntegerField(default=1, verbose_name="수량")
     price = models.IntegerField(verbose_name="가격")
     size = models.CharField(max_length=50, blank=True, null=True, verbose_name="크기")
-    material = models.CharField(max_length=50, blank=True, null=True, verbose_name="제작방식")
-    short_description = models.CharField(max_length=50, blank=True, null=True, verbose_name="작품 설명")
+    material = models.CharField(
+        max_length=50, blank=True, null=True, verbose_name="제작방식"
+    )
+    short_description = models.CharField(
+        max_length=50, blank=True, null=True, verbose_name="작품 설명"
+    )
     artist = models.ForeignKey(Artist, on_delete=models.DO_NOTHING, verbose_name="작가")
     is_soldout = models.BooleanField(default=False, verbose_name="품절 여부")
 
@@ -30,9 +34,7 @@ def get_image_path(instance, filename):
 
 class ProductImage(BaseModel):
     image_url = models.ImageField(
-        upload_to=get_image_path,
-        max_length=1000,
-        verbose_name="url"
+        upload_to=get_image_path, max_length=1000, verbose_name="url"
     )
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name="상품")
     is_thumbnail = models.BooleanField(default=False, verbose_name="썸네일 여부")
@@ -44,4 +46,3 @@ class ProductImage(BaseModel):
         db_table = "product_image"
         verbose_name = "상품 이미지"
         verbose_name_plural = "상품 이미지"
-
