@@ -15,6 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+    TokenVerifyView,
+)
 
 from core.views import HealthCheckView
 from products.views import ProductDetailAPIView, ProductListAPIView
@@ -27,6 +32,10 @@ urlpatterns = [
     path("api/v1/products", ProductListAPIView.as_view()),
     path("api/v1/products/<int:pk>", ProductDetailAPIView.as_view()),
     path("api/v1/users/sign-in/kakao", KakakoSocialLoginAPIVIew.as_view()),
+    path("accounts/", include("allauth.urls")),
+    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
+    path("api/token/verify/", TokenVerifyView.as_view(), name="token_verify"),
 ]
 
 # if settings.DEBUG:
