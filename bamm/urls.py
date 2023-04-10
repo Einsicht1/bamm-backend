@@ -32,7 +32,7 @@ urlpatterns = [
     path("api/v1/products", ProductListAPIView.as_view()),
     path("api/v1/products/<int:pk>", ProductDetailAPIView.as_view()),
     path("api/v1/users/sign-in/kakao", KakakoSocialLoginAPIVIew.as_view()),
-    path("api//users/sign-in/kakao", KakakoSocialLoginAPIVIew.as_view()),
+    path("api/users/sign-in/kakao", KakakoSocialLoginAPIVIew.as_view()),
     path("accounts/", include("allauth.urls")),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
