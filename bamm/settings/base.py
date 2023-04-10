@@ -152,9 +152,12 @@ MEDIAFILES_LOCATION = "media"
 # aws end
 
 
-CORS_ALLOW_ALL_ORIGINS = True
-# CORS_ORIGIN_WHITELIST = ["http://127.0.0.1:800"]
-# CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    "https://bamm.kr",
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:8000",
+]
+CORS_ALLOW_CREDENTIALS = True
 
 AUTH_USER_MODEL = "users.User"
 

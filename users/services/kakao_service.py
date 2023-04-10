@@ -68,7 +68,7 @@ class KakaoService:
         params = {
             "grant_type": "authorization_code",
             "client_id": "ce2597af0b15d899f76bc01cd6b5b8e2",
-            "redirect_uri": "http://localhost:3000/login/oauth/kakao",
+            "redirect_uri": "https://bamm.kr/login/oauth/kakao",
             "code": code,
         }
         res = requests.post(url=url, data=params)
