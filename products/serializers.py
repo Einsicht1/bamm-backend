@@ -6,10 +6,22 @@ from products.models import Product
 
 class ProductSerializer(serializers.ModelSerializer):
     artist = ArtistSerializer()
+    thumbnail = serializers.SerializerMethodField()
     images = serializers.SerializerMethodField()
 
+    def get_thumbnail(self, obj):
+        if thumbnail := obj.productimage_set.filter(is_thumbnail=True).first():
+            return thumbnail.image_url.url
+
+        if first_image := obj.productimage_set.first():
+            return first_image.image_url.url
+        return None
+
     def get_images(self, obj):
-        return [image_obj.image_url.url for image_obj in obj.productimage_set.all()]
+        return [
+            image_obj.image_url.url
+            for image_obj in obj.productimage_set.filter(is_thumbnail=False)
+        ]
 
     class Meta:
         model = Product
