@@ -13,7 +13,7 @@ class Product(BaseModel):
         max_length=50, blank=True, null=True, verbose_name="제작방식"
     )
     short_description = models.CharField(
-        max_length=50, blank=True, null=True, verbose_name="작품 설명"
+        max_length=200, blank=True, null=True, verbose_name="작품 설명"
     )
     artist = models.ForeignKey(Artist, on_delete=models.DO_NOTHING, verbose_name="작가")
     is_soldout = models.BooleanField(default=False, verbose_name="품절 여부")
