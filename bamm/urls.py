@@ -22,7 +22,11 @@ from rest_framework_simplejwt.views import (
 )
 
 from core.views import HealthCheckView
-from products.views import ProductDetailAPIView, ProductListAPIView
+from products.views import (
+    NaverPayProductValidationAPIVIew,
+    ProductDetailAPIView,
+    ProductListAPIView,
+)
 from users.views import KakakoSocialLoginAPIVIew
 
 urlpatterns = [
@@ -32,7 +36,9 @@ urlpatterns = [
     path("api/v1/products", ProductListAPIView.as_view()),
     path("api/v1/products/<int:pk>", ProductDetailAPIView.as_view()),
     path("api/v1/users/sign-in/kakao", KakakoSocialLoginAPIVIew.as_view()),
-    path("api/users/sign-in/kakao", KakakoSocialLoginAPIVIew.as_view()),
+    path(
+        "api/v1/naverpay/product-validation", NaverPayProductValidationAPIVIew.as_view()
+    ),
     path("accounts/", include("allauth.urls")),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),

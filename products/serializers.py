@@ -14,3 +14,34 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = "__all__"
+
+
+class ShippingPolicySerializer(serializers.Serializer):
+    groupId = serializers.IntegerField(allow_null=True)
+    method = serializers.CharField(default="DELIVERY")
+    feeType = serializers.CharField(default="FREE")
+    feePayType = serializers.CharField(default="FREE")
+    feePrice = serializers.CharField(default="0")
+
+
+class NaverPayProductValidationSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    name = serializers.CharField()
+    basePrice = serializers.IntegerField(source="price")
+    taxType = serializers.CharField(allow_null=True)
+    infoUrl = serializers.SerializerMethodField()
+    imageUrl = serializers.SerializerMethodField()
+    status = serializers.SerializerMethodField()
+    shippingPolicy = serializers.SerializerMethodField()
+
+    def get_infoUrl(self, instance):
+        return f"https://bamm.kr/detail/{instance.id}"
+
+    def get_imageUrl(self, instance):
+        return instance.productimage_set.filter(is_thumbnail=True).first().image_url.url
+
+    def get_status(self, instance):
+        return "ON_SALE" if not instance.is_soldout else "SOLDOUT"
+
+    def get_shippingPolicy(self, instance):
+        return ShippingPolicySerializer(1).data
