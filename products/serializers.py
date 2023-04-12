@@ -29,6 +29,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class ShippingPolicySerializer(serializers.Serializer):
+    groupId = serializers.CharField(default="")
     method = serializers.CharField(default="DELIVERY")
     feeType = serializers.CharField(default="FREE")
     feePayType = serializers.CharField(default="FREE")
