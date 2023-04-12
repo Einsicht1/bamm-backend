@@ -22,6 +22,7 @@ from rest_framework_simplejwt.views import (
 )
 
 from core.views import HealthCheckView
+from orders.views import OrderCreateAPIView
 from products.views import (
     NaverPayProductValidationAPIVIew,
     ProductDetailAPIView,
@@ -39,6 +40,7 @@ urlpatterns = [
     path(
         "api/v1/naverpay/product-validation", NaverPayProductValidationAPIVIew.as_view()
     ),
+    path("api/v1/orders", OrderCreateAPIView.as_view(), name="order-create"),
     path("accounts/", include("allauth.urls")),
     path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
