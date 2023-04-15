@@ -12,7 +12,9 @@ class OrderCreateSerializer(serializers.ModelSerializer):
             "quantity",
             "total_amount",
             "user",
+            "order_id",
         ]
+        read_only_fields = ("order_id",)
 
     def validate(self, attrs):
         product = attrs["product"]
@@ -26,3 +28,9 @@ class OrderCreateSerializer(serializers.ModelSerializer):
             raise ValidationError("결제금액은 0원 이상이어야 합니다.")
 
         return attrs
+
+
+class PortOneWebhookSerializer(serializers.Serializer):
+    imp_uid = serializers.CharField()  # 결제 id
+    merchant_uid = serializers.CharField()  # 주문 id
+    status = serializers.CharField()
