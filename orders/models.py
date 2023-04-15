@@ -18,9 +18,9 @@ class Order(BaseModel):
     user = models.ForeignKey(
         User, verbose_name="유저", blank=True, null=True, on_delete=models.DO_NOTHING
     )
-    order_number = models.CharField(unique=True, max_length=200, verbose_name="주문번호")
+    order_id = models.CharField(unique=True, max_length=200, verbose_name="주문번호")
     product = models.ForeignKey(Product, verbose_name="상품", on_delete=models.DO_NOTHING)
-    quantity = models.IntegerField(default=1, verbose_name="수량")
+    quantity = models.PositiveIntegerField(default=1, verbose_name="수량")
     total_amount = models.DecimalField(
         max_digits=13, decimal_places=2, verbose_name="결제 금액"
     )
@@ -37,21 +37,19 @@ class Order(BaseModel):
         verbose_name_plural = "주문"
 
     @classmethod
-    def generate_order_number(cls):
+    def generate_order_id(cls):
         today = timezone.now().strftime("%Y%m%d")
         last_order = (
-            cls.objects.filter(order_number__startswith=today)
-            .order_by("-order_number")
-            .first()
+            cls.objects.filter(order_id__startswith=today).order_by("-order_id").first()
         )
         if last_order:
-            last_order_number = last_order.order_number.split("-")[-1]
-            new_order_number = f"{today}-{int(last_order_number) + 1:06}"
+            last_order_id = last_order.order_id.split("-")[-1]
+            new_order_id = f"{today}-{int(last_order_id) + 1:06}"
         else:
-            new_order_number = f"{today}-000001"
-        return new_order_number
+            new_order_id = f"{today}-000001"
+        return new_order_id
 
     def save(self, *args, **kwargs):
-        if not self.order_number:
-            self.order_number = self.generate_order_number()
+        if not self.order_id:
+            self.order_id = self.generate_order_id()
         super().save(*args, **kwargs)

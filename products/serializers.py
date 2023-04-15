@@ -29,7 +29,7 @@ class ProductSerializer(serializers.ModelSerializer):
 
 
 class ShippingPolicySerializer(serializers.Serializer):
-    groupId = serializers.CharField(default="")
+    groupId = serializers.CharField(default="shipping-a")
     method = serializers.CharField(default="DELIVERY")
     feeType = serializers.CharField(default="FREE")
     feePayType = serializers.CharField(default="FREE")
@@ -38,6 +38,8 @@ class ShippingPolicySerializer(serializers.Serializer):
 
 class NaverPayProductValidationSerializer(serializers.Serializer):
     id = serializers.IntegerField()
+    merchantProductId = serializers.IntegerField(source="id")
+    ecMallProductId = serializers.IntegerField(source="id")
     name = serializers.CharField()
     basePrice = serializers.IntegerField(source="price")
     taxType = serializers.CharField(default="TAX_FREE")

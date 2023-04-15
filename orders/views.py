@@ -1,6 +1,7 @@
 from rest_framework.generics import CreateAPIView
 
+from orders.serializers import OrderCreateSerializer
+
 
 class OrderCreateAPIView(CreateAPIView):
-    def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+    serializer_class = OrderCreateSerializer
