@@ -8,7 +8,7 @@ from products.serializers import NaverPayProductValidationSerializer, ProductSer
 
 class ProductListAPIView(ListAPIView):
     serializer_class = ProductSerializer
-    queryset = Product.objects.all()
+    queryset = Product.objects.all().order_by("-id")
 
 
 class ProductDetailAPIView(RetrieveAPIView):
