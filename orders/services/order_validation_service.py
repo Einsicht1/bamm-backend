@@ -1,5 +1,6 @@
 import requests
 from django.db import transaction
+from sentry_sdk import capture_message
 
 from core.utils.portone import get_portone_access_token
 from orders.models import Order
@@ -13,6 +14,7 @@ class OrderValidationService:
         access_token = get_portone_access_token()
 
         payment_detail = self._get_payment_detail_from_portone(access_token, imp_uid)
+        capture_message(f"payment_detail{payment_detail}")
         if payment_detail["code"] == -1:
             "존재하지 않는 결제정보입니다. 흑흑 뭐라도 조치해야 함."
         if payment_detail["code"] == 0:
