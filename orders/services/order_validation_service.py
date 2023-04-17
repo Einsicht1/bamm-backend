@@ -22,7 +22,7 @@ class OrderValidationService:
             and payment_detail["response"]["amount"] == order.total_amount
             and payment_detail["response"]["status"] == "paid"
         ):
-            with transaction.atomic:
+            with transaction.atomic():
                 order.status = Order.Status.PAYMENT_COMPLETED
                 order.product.is_soldout = True
                 order.product.quantity -= 1
