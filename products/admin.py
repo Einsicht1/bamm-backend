@@ -17,6 +17,17 @@ class ProductAdmin(ModelAdmin):
     exclude = [
         "deleted_at",
     ]
+    list_display = [
+        "pk",
+        "artist",
+        "is_soldout",
+        "material",
+        "name",
+        "price",
+        "quantity",
+        "short_description",
+        "size",
+    ]
 
 
 admin.site.register(Product, ProductAdmin)
