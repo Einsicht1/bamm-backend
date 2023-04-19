@@ -29,6 +29,9 @@ class ProductAdmin(ModelAdmin):
         "size",
     ]
 
+    def delete_model(self, request, obj):
+        obj.soft_delete()
+
 
 admin.site.register(Product, ProductAdmin)
 

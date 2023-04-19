@@ -26,6 +26,9 @@ class Product(BaseModel):
     def __str__(self):
         return f"{self.name}"
 
+    def delete(self, using=None, keep_parents=False):
+        self.soft_delete()
+
 
 def get_image_path(instance, filename):
     product = instance.product

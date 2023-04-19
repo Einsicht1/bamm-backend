@@ -36,6 +36,9 @@ class Order(BaseModel):
         verbose_name = "주문"
         verbose_name_plural = "주문"
 
+    def delete(self, using=None, keep_parents=False):
+        self.soft_delete()
+
     @classmethod
     def generate_order_id(cls):
         today = timezone.now().strftime("%Y%m%d")
