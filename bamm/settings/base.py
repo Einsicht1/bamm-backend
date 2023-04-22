@@ -143,7 +143,8 @@ AWS_REGION = os.environ.get("AWS_REGION")
 
 # S3 Storages
 AWS_STORAGE_BUCKET_NAME = "bamm-product"
-AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_REGION}.amazonaws.com"
+# AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_REGION}.amazonaws.com"
+AWS_S3_CUSTOM_DOMAIN = "d17kbftt5ztmq0.cloudfront.net"
 DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 MEDIA_URL = f"https//{AWS_S3_CUSTOM_DOMAIN}/"
 MEDIA_ROOT = "media"
