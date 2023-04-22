@@ -23,9 +23,8 @@ DATABASES = {
     }
 }
 
-
 sentry_sdk.init(
-    dsn="https://e33994c42b764c48bd44215bac0d1a09@o4504989486809088.ingest.sentry.io/4504989492838400",
+    dsn=os.environ.get("SENTRY_DSN"),
     integrations=[
         DjangoIntegration(),
     ],
